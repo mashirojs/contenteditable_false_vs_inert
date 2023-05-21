@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Home</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="styles.css" />
+    <script type="module" src="script.js"></script>
+    <style>
+      div[contenteditable] {
+        padding: 1.5rem;
+        border: 1px solid black;
+        border-radius: 0.5rem;
+        margin: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>contenteditable="false"</h1>
+    <div contenteditable>
+      this
+      <ruby contenteditable="false">is<rt>イズ</rt></ruby> sample
+    </div>
+
+    <h1>HTMLElement inert</h1>
+    <div contenteditable>
+      this
+      <ruby inert>is<rt>いず</rt></ruby> sample
+    </div>
+  </body>
+</html>
