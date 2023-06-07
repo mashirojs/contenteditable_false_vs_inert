@@ -7,11 +7,15 @@
     <link rel="stylesheet" href="styles.css" />
     <script type="module" src="script.js"></script>
     <style>
-      div[contenteditable] {
+      div[contenteditable]:not([contenteditable='false']) {
         padding: 1.5rem;
         border: 1px solid black;
         border-radius: 0.5rem;
         margin: 1rem;
+      }
+
+      .ruby {
+        display: inline-block;
       }
     </style>
   </head>
@@ -22,10 +26,62 @@
       <ruby contenteditable="false">is<rt>イズ</rt></ruby> sample
     </div>
 
+    <h1>outside div contenteditable="false"</h1>
+    <div contenteditable>
+      this
+      <div contenteditable="false" class="ruby">
+        <ruby>is<rt>イズ</rt></ruby>
+      </div>
+      sample
+    </div>
+
     <h1>HTMLElement inert</h1>
     <div contenteditable>
       this
       <ruby inert>is<rt>いず</rt></ruby> sample
     </div>
+
+    <h1>outside div inert</h1>
+    <div contenteditable>
+      this
+      <div inert class="ruby">
+        <ruby>is<rt>いず</rt></ruby>
+      </div>
+      sample
+    </div>
+
+    <h1>inert -> contenteditable="false"</h1>
+    <div contenteditable>
+      this
+      <div inert class="ruby">
+        <ruby contenteditable>is<rt>いず</rt></ruby>
+      </div>
+      sample
+    </div>
+
+    <h1>contenteditable="false" -> inert</h1>
+    <div contenteditable>
+      this
+      <div contenteditable="false" class="ruby">
+        <ruby inert>is<rt>いず</rt></ruby>
+      </div>
+      sample
+    </div>
+
+    <button>log selection</button>
+
+    <script>
+      const button = document.querySelector('button');
+      button.addEventListener('click', () => {
+        if (window.getSelection().rangeCount === 0) {
+          console.log('rangeCount 0');
+          return;
+        }
+
+        console.log(`count: ${window.getSelection().rangeCount}`);
+        console.log(`first range`);
+        console.log(window.getSelection().getRangeAt(0));
+      });
+    </script>
   </body>
 </html>
